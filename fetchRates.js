@@ -31,7 +31,7 @@ function printCurrencyCodeAndName()
 {
     $("select[name='from_tkc'] option").each(function()
     {
-        console.log(getCurrencyCode($(this)) + ": " + getCurrencyName($(this)))
+        console.log(getCurrencyCode($(this)) + " " + getCurrencyName($(this)))
     });
 }
 
@@ -69,6 +69,5 @@ function printExchangeRates()
 function exchangeRatesManager()
 {
     printCurrencyCodeAndName();
-    console.log("#")
     printExchangeRates();
 }
