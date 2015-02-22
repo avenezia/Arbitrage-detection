@@ -27,6 +27,15 @@ function isCurrencyAlreadyProcessed(iCurrencyCode, iCurrencyArray)
     }
 }
 
+function isCurrencyToSkip(iOptionElement)
+{
+    if ($(iOptionElement).text() == "Select a Currency")
+        return true;
+    var currencyCodesToSkip = ["ADP", "ATS", "BEF", "CNH", "CYP", "DEM", "EEK", "ESP", "FIM", "FRF",
+        "GRD", "IEP", "ITL", "LTL", "LUF", "LVL", "MTL", "NLG", "PTE", "SIT", "SKK", "TRL"];
+    return currencyCodesToSkip.indexOf(getCurrencyCode(iOptionElement)) >= 0;
+}
+
 function printCurrencyCodeAndName()
 {
     $("select[name='from_tkc'] option").each(function()
@@ -42,7 +51,7 @@ function printExchangeRates()
 
     $("select[name='from_tkc'] option").each(function()
     {
-        if ($(this).text() == "Select a Currency")
+        if (isCurrencyToSkip($(this))
             return 0;
 
         fromCurrencyCode = getCurrencyCode($(this))
@@ -52,7 +61,7 @@ function printExchangeRates()
             processedTo = []    
             $("select[name='to_tkc'] option").each(function()
             {
-                if ($(this).text() == "Select a Currency")
+                if (isCurrencyToSkip($(this))
                     return 0;
                 toCurrencyCode = getCurrencyCode($(this))
                 if (!isCurrencyAlreadyProcessed(toCurrencyCode, processedTo))

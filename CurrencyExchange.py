@@ -2,7 +2,7 @@ class CurrencyExchange:
     def __init__(self, iFrom, iTo, iRate):
         self.__fromCurrency = iFrom
         self.__toCurrency = iTo
-        self.__exchangeRate = iRate
+        self.__exchangeRate = float(iRate)
 
     def __str__(self):
         return self.__fromCurrency + "->" + self.__toCurrency + ": " + self.__exchangeRate
