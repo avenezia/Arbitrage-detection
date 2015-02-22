@@ -32,7 +32,7 @@ class ArbitrageDetector:
                 edge = self.__exchangeRateGraph.add_edge(fromVertex, toVertex)
                 self.__exchangeRatePropertyMap[edge] = -math.log(currencyExchange.exchangeRate)
 
-        allEdgesAreMinimized, distanceMap, predecessorsMap = graph_tool.search.bellman_ford_search(self.__exchangeRateGraph,
+        allEdgesAreMinimized, distancesMap, predecessorsMap = graph_tool.search.bellman_ford_search(self.__exchangeRateGraph,
             self.__exchangeRateGraph.vertex(0), self.__exchangeRatePropertyMap, infinity=200000000.0)
         return allEdgesAreMinimized
 
